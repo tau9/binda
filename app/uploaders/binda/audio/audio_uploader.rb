@@ -20,6 +20,7 @@ module Binda
         if file && model
             model.content_type = file.content_type if file.content_type
             model.file_size = file.size
+            model.duration = file.audio_properties.length
         end
     end
 
