@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari",             "~> 1.0"
   s.add_dependency "friendly_id",          ">= 5.1",        "< 5.4"
   s.add_dependency "bourbon",              "4.3.4"
+  s.add_dependency "taglib-ruby"           ">=1.1.0"
 
 
   # DEVELOPMENT GEMS
