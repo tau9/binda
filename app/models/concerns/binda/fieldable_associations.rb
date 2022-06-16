@@ -56,8 +56,8 @@ module Binda
 
 	    accepts_nested_attributes_for :texts, :strings, :dates, :assets, :images, :videos, :audios, :galleries, :repeaters, :radios, :selections, :checkboxes, :relations, :svgs, allow_destroy: true
 
-			validates_associated :texts
-			validates_associated :strings
+			# validates_associated :texts
+			# validates_associated :strings
 			validates_associated :dates
 			validates_associated :assets
 			validates_associated :images
