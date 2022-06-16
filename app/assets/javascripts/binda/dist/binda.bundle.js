@@ -556,12 +556,10 @@ function handle_file(event) {
 	$parent.find("input").each(function () {
 		if (this.isSameNode(event.target)) {
 			// Add the file to the request
-			console.log({name: this.getAttribute("name"), file, fileName: file.name});
 			formData.append(this.getAttribute("name"), file, file.name);
 		} else {
 			// Add secondary values to the request
 
-			console.log({name: this.getAttribute("name"), value: this.getAttribute("value")});
 			formData.append(this.getAttribute("name"), this.getAttribute("value"));
 		}
 	});
@@ -594,10 +592,6 @@ function gatherData($parent_repeater, formData) {
 function makeRequest(event, formData) {
 	var id = event.target.getAttribute("data-id");
 	var $parent = $("#fileupload-" + id);
-	console.log({id, $parent});
-	for (var pair of formData.entries()) {
-		console.log(pair[0]+ ', ' + pair[1]); 
-	}
 	// Make request
 	$.ajax({
 		url: event.target.getAttribute("data-url"),
@@ -606,10 +600,8 @@ function makeRequest(event, formData) {
 		contentType: false, // needed to pass formData with the current format
 		data: formData
 	}).done(function (data) {
-		console.log({data});
 		updateFileuploadField(data, id);
 	}).fail(function (dataFail) {
-		console.log({dataFail});
 		// Hide loaded
 		$(".popup-warning").addClass("popup-warning--hidden");
 		alert($parent.data("error"));
