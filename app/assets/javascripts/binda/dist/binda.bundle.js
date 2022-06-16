@@ -591,6 +591,7 @@ function gatherData($parent_repeater, formData) {
 function makeRequest(event, formData) {
 	var id = event.target.getAttribute("data-id");
 	var $parent = $("#fileupload-" + id);
+	console.log({id, $parent});
 	// Make request
 	$.ajax({
 		url: event.target.getAttribute("data-url"),
@@ -599,8 +600,10 @@ function makeRequest(event, formData) {
 		contentType: false, // needed to pass formData with the current format
 		data: formData
 	}).done(function (data) {
+		console.log({data});
 		updateFileuploadField(data, id);
 	}).fail(function (dataFail) {
+		console.log({dataFail});
 		// Hide loaded
 		$(".popup-warning").addClass("popup-warning--hidden");
 		alert($parent.data("error"));
