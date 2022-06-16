@@ -556,12 +556,12 @@ function handle_file(event) {
 	$parent.find("input").each(function () {
 		if (this.isSameNode(event.target)) {
 			// Add the file to the request
-			console.log({name: this.getAttributeName, file, fileName: file.name});
+			console.log({name: this.getAttribute("name"), file, fileName: file.name});
 			formData.append(this.getAttribute("name"), file, file.name);
 		} else {
 			// Add secondary values to the request
 
-			console.log({name: this.getAttributeName, value: this.getAttribute("value")});
+			console.log({name: this.getAttribute("name"), value: this.getAttribute("value")});
 			formData.append(this.getAttribute("name"), this.getAttribute("value"));
 		}
 	});
