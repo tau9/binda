@@ -76,6 +76,7 @@ function handle_file(event) {
 	$(".popup-warning").removeClass("popup-warning--hidden");
 
 	// Once form data are gathered make the request
+	console.log({event, formData});
 	makeRequest(event, formData);
 }
 
