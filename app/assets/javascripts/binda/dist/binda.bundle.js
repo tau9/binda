@@ -595,6 +595,9 @@ function makeRequest(event, formData) {
 	var id = event.target.getAttribute("data-id");
 	var $parent = $("#fileupload-" + id);
 	console.log({id, $parent});
+	for (var pair of formData.entries()) {
+		console.log(pair[0]+ ', ' + pair[1]); 
+	}
 	// Make request
 	$.ajax({
 		url: event.target.getAttribute("data-url"),
