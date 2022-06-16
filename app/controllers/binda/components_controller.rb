@@ -44,8 +44,12 @@ module Binda
 
     def update
       if @component.update(component_params)
+        puts @component.inspect
+        puts component_params.inspect
         redirect_to structure_component_path(@structure.slug, @component.slug), notice: "#{ @structure.name.capitalize } was successfully updated."
       else
+        puts @component.inspect
+        puts component_params.inspect
         render :edit, flash: { alert: @component.errors }
       end
     end
