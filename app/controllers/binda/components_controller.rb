@@ -88,6 +88,7 @@ module Binda
         render json: upload_details, status: 200
       else
         print "here"
+        puts @component.inspect
         puts upload_params(:component).inspect
         puts @component.errors.full_messages.inspect
         render json: @component.errors.full_messages, status: 400
