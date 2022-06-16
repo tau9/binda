@@ -8,7 +8,7 @@ module Binda
   class Text < ApplicationRecord
 
   	include Fields
-  	include FieldUniqueness
+  	# include FieldUniqueness
   	
   end
 end
