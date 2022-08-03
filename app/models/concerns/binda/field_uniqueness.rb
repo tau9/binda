@@ -17,12 +17,17 @@ module Binda
 				fieldable_type: self.fieldable_type
 			)
 			if instances.any? && instances.first.id != self.id
-				errors.add(:base, I18n.t("binda.duplicate_validation", { 
-					arg1: self.field_setting.field_type, 
-					arg2: self.fieldable_id,
-					arg3: self.field_setting.slug 
-				}))
-				return false
+				if instances.first.content == nil 
+				  instances.first.delete
+				else
+				  instances.second.delete
+				end
+				# errors.add(:base, I18n.t("binda.duplicate_validation", { 
+				# 	arg1: self.field_setting.field_type, 
+				# 	arg2: self.fieldable_id,
+				# 	arg3: self.field_setting.slug 
+				# }))
+				return true
 			else
 				return true
 			end
