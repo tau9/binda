@@ -48,10 +48,10 @@ module Binda
         puts @component.inspect
         puts component_params.inspect
         redirect_to action: :edit, notice: "#{ @structure.name.capitalize } was successfully updated."
-      else
-        puts @component.inspect
-        puts component_params.inspect
-        render :edit, flash: { alert: @component.errors }
+      # else
+      #   puts @component.inspect
+      #   puts component_params.inspect
+      #   render :edit, flash: { alert: @component.errors }
       end
     end
 
