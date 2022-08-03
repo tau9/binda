@@ -14,6 +14,7 @@ module Binda
 					.where(fieldable_id: self.id, fieldable_type: self.class.name)
 					.where(binda_field_settings: { slug: field_slug, field_type: "string" })
 					.first
+
 				unless obj.nil?
 					# to_s ensures the returned object is class String
 					obj.content.to_s
