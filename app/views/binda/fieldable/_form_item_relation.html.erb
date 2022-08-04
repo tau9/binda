@@ -10,6 +10,7 @@
 			hint: field_setting.description.nil? ? false : field_setting.description.html_safe,
 			value_method: :id,
 			checked: ff.object.dependent_component_ids, 
+
 			include_blank: true, 
 			include_hidden: true,
 			placeholder: t('binda.select_placeholder') %>
