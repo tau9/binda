@@ -9,7 +9,7 @@
 			label: field_setting.name,
 			hint: field_setting.description.nil? ? false : field_setting.description.html_safe,
 			value_method: :id,
-			# checked: ff.object.respond_to?('dependent_component_ids') ? ff.object.dependent_component_ids : false 
+			checked: ff.object.respond_to?('dependent_component_ids') ? ff.object.dependent_component_ids : false 
 			include_blank: true, 
 			include_hidden: true,
 			placeholder: t('binda.select_placeholder') %>
@@ -22,7 +22,7 @@
 			label: field_setting.name,
 			hint: field_setting.description.nil? ? false : field_setting.description.html_safe,
 			value_method: :id, 
-			# checked: ff.object.respond_to?('dependent_board_ids') ? ff.object.dependent_board_ids : false, 
+			checked: ff.object.respond_to?('dependent_board_ids') ? ff.object.dependent_board_ids : false, 
 			include_blank: true, 
 			include_hidden: true,
 			placeholder: t('binda.select_placeholder') %>
