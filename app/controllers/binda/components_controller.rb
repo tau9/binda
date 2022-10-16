@@ -24,17 +24,32 @@ module Binda
 
     def new
       @component = @structure.components.build()
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
       puts @component
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
 
       @field_settings_ids = []
 
       @structure.field_groups.each do |group|
         group.field_settings.each do |setting|
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        puts setting
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+
           if setting.field_type == "string" || setting.field_type == "text"
             @field_settings_ids.push(setting.id)
           end
         end
       end
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
+      puts @field_settings_ids
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
 
       @field_settings_ids.each do |id|
         instances = Text.where(
@@ -42,6 +57,12 @@ module Binda
           fieldable_id: @component.id,
           fieldable_type: "Binda::Component" 
         )
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        puts instances
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        
         if instances.length > 1
           instances.each_with_index do |value, index|
             if index > 0
