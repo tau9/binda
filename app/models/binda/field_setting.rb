@@ -256,7 +256,7 @@ module Binda
 		#   
 		# TODO this MUST be optimized
 		def create_field_instances
-      CreateFieldInstancesJob.perform_later self
+      CreateFieldInstancesJob.perform_now self
 		end
 
 		def create_field_instance_for(instance)

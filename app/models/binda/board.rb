@@ -32,7 +32,7 @@ module Binda
 
     # Create field instances for the current component
     def create_field_instances
-      CreateFieldInstancesJob.perform_later self
+      CreateFieldInstancesJob.perform_now self
     end
 
   end

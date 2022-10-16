@@ -1,6 +1,6 @@
 module Binda
   class GenerateFieldsJob < ApplicationJob
-    queue_as :default
+    # queue_as :default
 
     def perform instance
       # If this is a component or a board

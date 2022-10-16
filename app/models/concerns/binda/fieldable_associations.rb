@@ -118,7 +118,7 @@ module Binda
     # TODO check if find_or_create_a_field_by method should be used instead (it's used in editors views)
     # 
     def generate_fields
-      GenerateFieldsJob.perform_later self
+      GenerateFieldsJob.perform_now self
     end
 
 		# TODO: Update all helpers replacing `find` method with ruby `select`. 

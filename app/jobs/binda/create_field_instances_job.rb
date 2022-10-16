@@ -1,6 +1,6 @@
 module Binda
   class CreateFieldInstancesJob < ApplicationJob
-    queue_as :default
+    # queue_as :default
 
     def perform( instance )
       instance_type = instance.class.name.demodulize.underscore
