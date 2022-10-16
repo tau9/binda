@@ -58,16 +58,16 @@ module Binda
       puts ("-----------------------------------------------------")
 
       @field_settings_ids.each do |id|
-        text_instances = Binda::Text.where(
+        text_instances = Text.where(
           field_setting_id: id,
           fieldable_id: @component.id,
           fieldable_type: "Binda::Component" 
         )
-        # string_instances = Binda::String.where(
-        #   field_setting_id:  id,
-        #   fieldable_id: @component.id,
-        #   fieldable_type: "Binda::Component" 
-        # )
+        string_instances String.where(
+          field_setting_id:  id,
+          fieldable_id: @component.id,
+          fieldable_type: "Binda::Component" 
+        )
         puts ("-----------------------------------------------------")
         puts ("-----------------------------------------------------")
         puts text_instances
@@ -75,26 +75,26 @@ module Binda
         puts ("-----------------------------------------------------")
         puts text_instances.length
         puts ("-----------------------------------------------------")
-        # puts string_instances.length
-        # puts ("-----------------------------------------------------")
-        # puts string_instances
+        puts string_instances.length
+        puts ("-----------------------------------------------------")
+        puts string_instances
         puts ("-----------------------------------------------------")
         puts ("-----------------------------------------------------")
         
-        # if text_instances.length > 1
-        #   text_instances.each_with_index do |value, index|
-        #     if index > 0
-        #       value.destroy
-        #     end
-        #   end  
-        # end
-        # if string_instances.length > 1
-        #   string_instances.each_with_index do |value, index|
-        #     if index > 0
-        #       value.destroy
-        #     end
-        #   end  
-        # end
+        if text_instances.length > 1
+          text_instances.each_with_index do |value, index|
+            if index > 0
+              value.destroy
+            end
+          end  
+        end
+        if string_instances.length > 1
+          string_instances.each_with_index do |value, index|
+            if index > 0
+              value.destroy
+            end
+          end  
+        end
       end
       if @component.save
         redirect_to structure_component_path(@structure.slug, @component.slug), notice: "#{ @structure.name } was successfully created."
