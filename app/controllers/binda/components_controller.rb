@@ -24,6 +24,33 @@ module Binda
 
     def new
       @component = @structure.components.build()
+      puts @component
+
+      @field_settings_ids = []
+
+      @structure.field_groups.each do |group|
+        group.field_settings.each do |setting|
+          if setting.field_type == "string" || setting.field_type == "text"
+            @field_settings_ids.push(setting.id)
+          end
+        end
+      end
+
+      @field_settings_ids.each do |id|
+        instances = Text.where(
+          field_setting_id: id,
+          fieldable_id: @component.id,
+          fieldable_type: "Binda::Component" 
+        )
+        if instances.length > 1
+          instances.each_with_index do |value, index|
+            if index > 0
+              value.destroy
+            end
+          end  
+        end
+      end
+
       # The following variable will be used as wildcard by fieldable views
       @instance = @component
     end
