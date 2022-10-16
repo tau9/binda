@@ -36,67 +36,67 @@ module Binda
       @component = @structure.components.build(component_params)
 
       
+      @field_settings_ids = []
+
+      @structure.field_groups.each do |group|
+        group.field_settings.each do |setting|
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        puts setting
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+
+          if setting.field_type == "string" || setting.field_type == "text"
+            @field_settings_ids.push(setting.id)
+          end
+        end
+      end
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
+      puts @field_settings_ids
+      puts ("-----------------------------------------------------")
+      puts ("-----------------------------------------------------")
+
+      @field_settings_ids.each do |id|
+        text_instances = Binda::Text.where(
+          field_setting_id: id,
+          fieldable_id: @component.id,
+          fieldable_type: "Binda::Component" 
+        )
+        # string_instances = Binda::String.where(
+        #   field_setting_id:  id,
+        #   fieldable_id: @component.id,
+        #   fieldable_type: "Binda::Component" 
+        # )
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        puts text_instances
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        puts text_instances.length
+        puts ("-----------------------------------------------------")
+        # puts string_instances.length
+        # puts ("-----------------------------------------------------")
+        # puts string_instances
+        puts ("-----------------------------------------------------")
+        puts ("-----------------------------------------------------")
+        
+        # if text_instances.length > 1
+        #   text_instances.each_with_index do |value, index|
+        #     if index > 0
+        #       value.destroy
+        #     end
+        #   end  
+        # end
+        # if string_instances.length > 1
+        #   string_instances.each_with_index do |value, index|
+        #     if index > 0
+        #       value.destroy
+        #     end
+        #   end  
+        # end
+      end
       if @component.save
-        @field_settings_ids = []
-  
-        @structure.field_groups.each do |group|
-          group.field_settings.each do |setting|
-          puts ("-----------------------------------------------------")
-          puts ("-----------------------------------------------------")
-          puts setting
-          puts ("-----------------------------------------------------")
-          puts ("-----------------------------------------------------")
-  
-            if setting.field_type == "string" || setting.field_type == "text"
-              @field_settings_ids.push(setting.id)
-            end
-          end
-        end
-        puts ("-----------------------------------------------------")
-        puts ("-----------------------------------------------------")
-        puts @field_settings_ids
-        puts ("-----------------------------------------------------")
-        puts ("-----------------------------------------------------")
-  
-        @field_settings_ids.each do |id|
-          text_instances = Binda::Text.where(
-            field_setting_id: id,
-            fieldable_id: @component.id,
-            fieldable_type: "Binda::Component" 
-          )
-          # string_instances = Binda::String.where(
-          #   field_setting_id:  id,
-          #   fieldable_id: @component.id,
-          #   fieldable_type: "Binda::Component" 
-          # )
-          puts ("-----------------------------------------------------")
-          puts ("-----------------------------------------------------")
-          puts text_instances
-          puts ("-----------------------------------------------------")
-          puts ("-----------------------------------------------------")
-          puts text_instances.length
-          puts ("-----------------------------------------------------")
-          # puts string_instances.length
-          # puts ("-----------------------------------------------------")
-          # puts string_instances
-          puts ("-----------------------------------------------------")
-          puts ("-----------------------------------------------------")
-          
-          if text_instances.length > 1
-            text_instances.each_with_index do |value, index|
-              if index > 0
-                value.destroy
-              end
-            end  
-          end
-          # if string_instances.length > 1
-          #   string_instances.each_with_index do |value, index|
-          #     if index > 0
-          #       value.destroy
-          #     end
-          #   end  
-          # end
-        end
         redirect_to structure_component_path(@structure.slug, @component.slug), notice: "#{ @structure.name } was successfully created."
       else
         @instance = @component
