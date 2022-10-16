@@ -24,11 +24,16 @@ module Binda
 
     def new
       @component = @structure.components.build()
-      puts ("-----------------------------------------------------")
-      puts ("-----------------------------------------------------")
-      puts @component
-      puts ("-----------------------------------------------------")
-      puts ("-----------------------------------------------------")
+     
+      # The following variable will be used as wildcard by fieldable views
+      @instance = @component
+    end
+
+    def edit
+    end
+
+    def create
+      @component = @structure.components.build(component_params)
 
       @field_settings_ids = []
 
@@ -71,16 +76,6 @@ module Binda
           end  
         end
       end
-
-      # The following variable will be used as wildcard by fieldable views
-      @instance = @component
-    end
-
-    def edit
-    end
-
-    def create
-      @component = @structure.components.build(component_params)
 
       if @component.save
         redirect_to structure_component_path(@structure.slug, @component.slug), notice: "#{ @structure.name } was successfully created."
