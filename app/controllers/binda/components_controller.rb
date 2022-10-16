@@ -85,7 +85,7 @@ module Binda
         render json: upload_details, status: 200
       else
         puts "error"
-        puts @component.errors.full_messages
+        puts @component.errors.full_messages.inspect
         render json: @component.errors.full_messages, status: 400
       end
     end

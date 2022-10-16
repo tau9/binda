@@ -16,7 +16,11 @@ module Binda
 				fieldable_id: self.fieldable_id,
 				fieldable_type: self.fieldable_type
 			)
+			puts instances
 			if instances.any? && instances.first.id != self.id
+				puts self.field_setting.field_type
+				puts self.fieldable_id
+				puts self.field_setting.slug
 				errors.add(:base, I18n.t("binda.duplicate_validation", { 
 					arg1: self.field_setting.field_type, 
 					arg2: self.fieldable_id,
