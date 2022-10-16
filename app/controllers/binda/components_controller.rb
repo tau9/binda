@@ -35,49 +35,49 @@ module Binda
     def create
       @component = @structure.components.build(component_params)
 
-      @field_settings_ids = []
-
-      @structure.field_groups.each do |group|
-        group.field_settings.each do |setting|
-        puts ("-----------------------------------------------------")
-        puts ("-----------------------------------------------------")
-        puts setting
-        puts ("-----------------------------------------------------")
-        puts ("-----------------------------------------------------")
-
-          if setting.field_type == "string" || setting.field_type == "text"
-            @field_settings_ids.push(setting.id)
+      
+      if @component.save
+        @field_settings_ids = []
+  
+        @structure.field_groups.each do |group|
+          group.field_settings.each do |setting|
+          puts ("-----------------------------------------------------")
+          puts ("-----------------------------------------------------")
+          puts setting
+          puts ("-----------------------------------------------------")
+          puts ("-----------------------------------------------------")
+  
+            if setting.field_type == "string" || setting.field_type == "text"
+              @field_settings_ids.push(setting.id)
+            end
           end
         end
-      end
-      puts ("-----------------------------------------------------")
-      puts ("-----------------------------------------------------")
-      puts @field_settings_ids
-      puts ("-----------------------------------------------------")
-      puts ("-----------------------------------------------------")
-
-      @field_settings_ids.each do |id|
-        instances = Text.where(
-          field_setting_id: id,
-          fieldable_id: @component.id,
-          fieldable_type: "Binda::Component" 
-        )
         puts ("-----------------------------------------------------")
         puts ("-----------------------------------------------------")
-        puts instances
+        puts @field_settings_ids
         puts ("-----------------------------------------------------")
         puts ("-----------------------------------------------------")
-        
-        if instances.length > 1
-          instances.each_with_index do |value, index|
-            if index > 0
-              value.destroy
-            end
-          end  
+  
+        @field_settings_ids.each do |id|
+          instances = Text.where(
+            field_setting_id: id,
+            fieldable_id: @component.id,
+            fieldable_type: "Binda::Component" 
+          )
+          puts ("-----------------------------------------------------")
+          puts ("-----------------------------------------------------")
+          puts instances
+          puts ("-----------------------------------------------------")
+          puts ("-----------------------------------------------------")
+          
+          if instances.length > 1
+            instances.each_with_index do |value, index|
+              if index > 0
+                value.destroy
+              end
+            end  
+          end
         end
-      end
-
-      if @component.save
         redirect_to structure_component_path(@structure.slug, @component.slug), notice: "#{ @structure.name } was successfully created."
       else
         @instance = @component
