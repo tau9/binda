@@ -79,9 +79,13 @@ module Binda
     end
 
     def upload
+      puts @component
       if @component.update(upload_params(:component))
+        puts "success"
         render json: upload_details, status: 200
       else
+        puts "error"
+        puts @component.errors.full_messages
         render json: @component.errors.full_messages, status: 400
       end
     end
